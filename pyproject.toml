@@ -1,0 +1,9 @@
+[project]
+name = "image-retrieval-research"
+version = "0.1.0"
+description = "Research on Image Retrieval Subject"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "imagehash>=4.3.1",
+]
