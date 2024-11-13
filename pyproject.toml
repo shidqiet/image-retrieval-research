@@ -3,7 +3,19 @@ name = "image-retrieval-research"
 version = "0.1.0"
 description = "Research on Image Retrieval Subject"
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.8"
 dependencies = [
     "imagehash>=4.3.1",
+    "torch<=2.4.1",
+    "torchvision<=0.20.1",
 ]
+
+
+[tool.uv.sources]
+torch = { index = "pytorch" }
+torchvision = { index = "pytorch" }
+
+[[tool.uv.index]]
+name = "pytorch"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true

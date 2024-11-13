@@ -1,22 +1,15 @@
 import torch
 import torch.nn as nn
-import torchvision.transforms as transforms
 from PIL import Image
 from scipy.spatial.distance import cosine
-from torchvision.models import mobilenet_v3_small
+from torchvision import models
 
-model = mobilenet_v3_small(pretrained=True)
+model = models.mobilenet_v3_small(weights=models.MobileNet_V3_Small_Weights.DEFAULT)
 model.classifier = nn.Identity()
 model.eval()
 model.cpu()
 
-transform = transforms.Compose(
-    [
-        transforms.Resize((224, 224)),
-        transforms.ToTensor(),
-        transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
-    ]
-)
+transform = models.MobileNet_V3_Small_Weights.DEFAULT.transforms()
 
 
 def get_embedding(image_path):
@@ -27,8 +20,8 @@ def get_embedding(image_path):
     return embedding.squeeze().numpy()
 
 
-image_path_1 = "./data/peppers.jpg"
-image_path_2 = "./data/peppers.jpg"
+image_path_1 = "./data/peppers.png"
+image_path_2 = "./data/peppers.png"
 
 embedding1 = get_embedding(image_path_1)
 embedding2 = get_embedding(image_path_2)
